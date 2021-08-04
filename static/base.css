@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+div{
+    margin-top: 10px;
+}
+
+a, a:visited{
+    color: black;
+    text-decoration: none;
+    width: 100%;
+}
+
+.app-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.success, .error, .info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 5%;
+    padding: 5px 20px;
+    margin: 50px 100px;
+}
+
+.success{
+    color: darkgreen;
+}
+
+.info{
+    color: lightgreen;
+    margin: auto;
+}
+
+.error{
+    color: crimson;
+}

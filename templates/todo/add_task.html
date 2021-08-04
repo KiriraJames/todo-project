@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <link rel='stylesheet' type="text/css" href="{% static 'css/add_task.css' %}" >
+    <div class=main>
+        {% if form %}
+
+            {% crispy form %}
+            
+        {% endif %}
+    </div>
+{% endblock %}

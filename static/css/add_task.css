@@ -1,0 +1,14 @@
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.taskform{
+    margin: auto;
+}
