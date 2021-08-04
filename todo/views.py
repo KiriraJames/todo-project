@@ -39,13 +39,13 @@ def index(request):
 # Redirect to index() view with request.session['completed'] = True
 def get_completed(request):
     request.session['completed'] = True
-    return HttpResponseRedirect(reverse('todo:index'))
+    return HttpResponseRedirect(reverse('index'))
 
 # To get unfinished tasks
 # Redirect to index() view with request.session['completed'] = False
 def get_unfinished(request):
     request.session['completed'] = False
-    return HttpResponseRedirect(reverse('todo:index'))
+    return HttpResponseRedirect(reverse('index'))
 
 # Adding a task
 def add(request):
@@ -55,7 +55,7 @@ def add(request):
         form.save()
         success_message = "'" + request.POST['Title'] + "' Created Successfully"
         messages.success(request, success_message)
-        return HttpResponseRedirect(reverse('todo:index'))
+        return HttpResponseRedirect(reverse('index'))
     # else if no data create an empty form
     else:
         form = TaskForm()
@@ -70,12 +70,12 @@ def edit(request, identifier):
         form.save()
         success_message = "Task " + request.POST['Title'] + "' Updated Successfully "
         messages.success(request, success_message)
-        return HttpResponseRedirect(reverse('todo:index'))
+        return HttpResponseRedirect(reverse('index'))
     # else create a form and fill form with task data for editing
     else:
         task = get_object_or_404(Task, id=identifier)
         form = TaskForm(instance=task)
-        form.helper.form_action = reverse('todo:edit', args=[task.id,])
+        form.helper.form_action = reverse('edit', args=[task.id,])
         return render(request, 'todo/edit_task.html', {'form':form})
 
 #Delete a task
@@ -85,7 +85,7 @@ def delete(request, identifier):
     task.delete()
     success_message = 'Task ' + task.Title + ' Deleted Successfully'
     messages.error(request, success_message)
-    return HttpResponseRedirect(reverse('todo:index'))
+    return HttpResponseRedirect(reverse('index'))
 
 def complete(request, identifier):
     task = get_object_or_404(Task, id=identifier)
@@ -94,7 +94,7 @@ def complete(request, identifier):
     task.save()
     success_message = "'" + task.Title + "' Completed"
     messages.success(request, success_message)
-    return HttpResponseRedirect(reverse('todo:index'))
+    return HttpResponseRedirect(reverse('index'))
 
 def remove_complete(request, identifier):
     task = get_object_or_404(Task, id=identifier)
@@ -103,4 +103,4 @@ def remove_complete(request, identifier):
     task.save()
     success_message = "'" + task.Title + "' removed from Completed Tasks"
     messages.success(request, success_message)
-    return HttpResponseRedirect(reverse('todo:index'))
+    return HttpResponseRedirect(reverse('index'))
