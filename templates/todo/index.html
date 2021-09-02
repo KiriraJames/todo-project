@@ -6,17 +6,17 @@
         <link rel='stylesheet' type="text/css" href="{% static 'css/index.css' %}" >
 
         <div class="toggle-buttons">
-            <a href="{% url 'index' %}">
+            <a href="{% url 'todo:index' %}">
                 <div {% if not completed and not unfinished %} class=btn-filled {% else %} class=btn-transparent {% endif %}>
                     All
                 </div>
             </a>
-            <a href="{% url 'get_completed' %}">
+            <a href="{% url 'todo:get_completed' %}">
                 <div {% if completed %} class=btn-filled {% else %} class=btn-transparent {% endif %}>
                     Completed
                 </div>
             </a>
-            <a href="{% url 'get_unfinished' %}">
+            <a href="{% url 'todo:get_unfinished' %}">
                 <div {% if unfinished %} class=btn-filled {% else %} class=btn-transparent {% endif %}>
                     Unfinished
                 </div>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="new-task">
-            <a href="{% url 'add' %}">
+            <a href="{% url 'todo:add' %}">
                 <div class=btn-transparent><h2>Add New</h2></div>
             </a>
         </div>
@@ -43,8 +43,8 @@
                     <div class="task-header">
                         <div class="task-title"> <h2>{{task.Title}}</h2> </div>
                         <div class="task-buttons">
-                            <a href="{% url 'edit' task.id %}"><div class=btn-transparent>Edit</div></a>
-                            <a href="{% url 'delete' task.id %}"><div class=btn-transparent>Delete</div></a>
+                            <a href="{% url 'todo:edit' task.id %}"><div class=btn-transparent>Edit</div></a>
+                            <a href="{% url 'todo:delete' task.id %}"><div class=btn-transparent>Delete</div></a>
                         </div>
                     </div>
 
@@ -53,9 +53,9 @@
                     <div class="task-footer">
                         <div class=task-footer-button>
                             {% if task.Completed %}
-                                <a href="{% url 'remove_complete' task.id %}"><div class=btn-filled>Completed</div></a>
+                                <a href="{% url 'todo:remove_complete' task.id %}"><div class=btn-filled>Completed</div></a>
                             {% else %}
-                                <a href="{% url 'complete' task.id %}"><div class=btn-transparent>Complete</div></a>
+                                <a href="{% url 'todo:complete' task.id %}"><div class=btn-transparent>Complete</div></a>
                             {% endif %}
                         </div>
                     </div>
